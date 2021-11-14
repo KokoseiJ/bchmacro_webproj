@@ -139,3 +139,6 @@ dmypy.json
 cython_debug/
 
 ### End of Python.gitignore
+
+app/test.db
+
