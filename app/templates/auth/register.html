@@ -1,0 +1,74 @@
+{% extends "auth/base.html" %}
+{% block form %}
+<form class="box" method="post">
+  <div class="field"><h2 class="is-size-2">회원가입</h2></div>
+  <div class="field">
+    <label class="label">이메일</label>
+    <div class="control has-icons-left">
+      <input class="input" type="text" id="email" name="email" placeholder="example@example.com">
+      <span class="icon is-small is-left">
+        <ion-icon name="person-outline"></ion-icon>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">비밀번호</label>
+    <div class="control has-icons-left">
+      <input class="input" type="password" id="password" name="password" placeholder="비밀번호">
+      <span class="icon is-small is-left">
+        <ion-icon name="lock-open-outline"></ion-icon>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">비밀번호 재입력</label>
+    <div class="control has-icons-left">
+      <input class="input" type="password" id="passwordRe" placeholder="비밀번호">
+      <span class="icon is-small is-left">
+        <ion-icon name="lock-open-outline"></ion-icon>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">닉네임</label>
+    <div class="control has-icons-left">
+      <input class="input" type="text" id="nickname" name="nickname" placeholder="닉네임을 입력해주세요.">
+      <span class="icon is-small is-left">
+        <ion-icon name="person-outline"></ion-icon>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">이름</label>
+    <div class="control has-icons-left">
+      <input class="input" type="text" id="name" name="name" placeholder="김현중">
+      <span class="icon is-small is-left">
+        <ion-icon name="person-outline"></ion-icon>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">학번</label>
+    <div class="control has-icons-left">
+      <input class="input" type="text" id="studentNumber" name="studentNumber" placeholder="example@example.com">
+      <span class="icon is-small is-left">
+        <ion-icon name="person-outline"></ion-icon>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">인증 토큰</label>
+    <div class="control has-icons-left">
+      <input class="input" type="text" id="token" name="token" placeholder="example@example.com">
+      <span class="icon is-small is-left">
+        <ion-icon name="person-outline"></ion-icon>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <button class="button is-link">회원가입</button>
+    </div>
+  </div>
+</form>
+{% endblock %}
