@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hello Bulma!</title>
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+</head>
+
+<body>
+  <nav class="navbar" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bulma.io">
+        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+      </a>
+      <a role="button" class="navbar-burger">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item">홈</a>
+        <a class="navbar-item">질문들</a>
+        <a class="navbar-item">
+          <div class="button is-primary">새 질문 하기</div>
+        </a>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a class="button is-primary">
+            가입하기
+          </a>
+          <a class="button is-light">
+            로그인
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="hero is-fullheight-with-navbar has-background-info">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered is-variable is-8">
+          <div class="column is-hidden-mobile has-text-right">
+            <h1 class="title is-1 has-text-light">원하는 모든 답들을,<br>지금 여기서.</h1>
+            <br>
+            <p class="subtitle has-text-light">BCH 정보공유시스템</p>
+          </div>
+          <div class="column">
+            <form class="box" method="post">
+              <div class="field">
+                <label class="label">이메일</label>
+                <div class="control has-icons-left">
+                  <input class="input" type="text" name="email" placeholder="example@example.com">
+                  <span class="icon is-small is-left">
+                    <ion-icon name="person-outline"></ion-icon>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">비밀번호</label>
+                <div class="control has-icons-left">
+                  <input class="input" type="password" name="password" placeholder="비밀번호">
+                  <span class="icon is-small is-left">
+                    <ion-icon name="lock-open-outline"></ion-icon>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <button class="button is-link">로그인</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Handler for navbar borglar button-->
+  <script>
+    var burger = document.querySelector(".navbar-burger");
+  var menu = document.querySelector(".navbar-menu");
+
+  burger.addEventListener("click", function() {
+    burger.classList.toggle("is-active");
+    menu.classList.toggle("is-active");
+  });
+
+  </script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+사이트 구조
+
+/
+
+/questions
+
+/questions/create
+
+/questions/{id}
+
+/questions/{id}/answer
+
+/login
+
+/register
+
+/admin
