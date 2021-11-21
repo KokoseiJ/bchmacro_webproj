@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+<section class="hero is-fullheight-with-navbar has-background-info">
+  <div class="hero-body">
+    <div class="container">
+      <div class="box has-text-centered">
+        <p class="title">
+          이메일을 인증해주세요.
+        </p>
+        회원가입 완료를 위해 {{ email }}으로 인증 링크를 전송했습니다.<br>
+        링크를 클릭해 인증을 완료해주세요.<br>
+        링크의 유효기간은 {{time_limit}}분 입니다.
+        <br><br>
+        <a class="button is-primary" href="http://{{ email.rsplit('@', 1)[-1] }}">
+          이메일 확인하기
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+{% endblock %}

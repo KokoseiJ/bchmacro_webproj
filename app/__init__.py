@@ -9,7 +9,9 @@ migrate = Migrate()
 def create_app():
     app = Flask(__name__)
 
+    app.config['SECRET_KEY'] = b"TESTING_KEY"
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
 
     from . import views
 
