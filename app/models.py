@@ -54,39 +54,6 @@ class User(db.Model):
     )
 
 
-class Image(db.Model):
-    id = db.Column(
-        db.String(12),
-        primary_key=True,
-        unique=True,
-        nullable=False
-    )
-
-    author = db.Column(
-        db.String(8),
-        unique=False,
-        nullable=False
-    )
-
-    parent_post = db.Column(
-        db.String(12),
-        unique=False,
-        nullable=False
-    )
-
-    filename = db.Column(
-        db.String(50),
-        unique=False,
-        nullable=False
-    )
-
-    sha256 = db.Column(
-        db.String(44),
-        unique=False,
-        nullable=False
-    )
-
-
 class Post(db.Model):
     id = db.Column(
         # Base64url 9바이트
@@ -144,6 +111,39 @@ class Post(db.Model):
         db.String(12),
         unique=False,
         nullable=True
+    )
+
+
+class Image(db.Model):
+    id = db.Column(
+        db.String(12),
+        primary_key=True,
+        unique=True,
+        nullable=False
+    )
+
+    author = db.Column(
+        db.String(8),
+        unique=False,
+        nullable=False
+    )
+
+    parent_post = db.Column(
+        db.String(12),
+        unique=False,
+        nullable=False
+    )
+
+    filename = db.Column(
+        db.String(50),
+        unique=False,
+        nullable=False
+    )
+
+    sha256 = db.Column(
+        db.String(44),
+        unique=False,
+        nullable=False
     )
 
 
