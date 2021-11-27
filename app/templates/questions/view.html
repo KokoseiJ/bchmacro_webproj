@@ -23,12 +23,10 @@
   <div class="box mt-2">
     <h1 class="title is-4">{{ reply.title }}</h1>
     <h2 class="subtitle is-6">작성자: {{ get_user_from_id(reply.author).nickname }}</h2>
-    {% if post.image %}
-    <div class="">
+    {% if reply.image %}
       <figure class="">
         <img src="../{{ reply.id }}/image">
       </figure>
-    </div>
     {% endif %}
     <p class="mt-2">{{ reply.content }}</p>
   </div>
