@@ -10,8 +10,20 @@
 
 /questions/{id}/answer
 
+/my
+
+/my_
+
+/my/edit
+
 /login
 
 /register
 
 /admin
+
+
+세션 sub:
+    가입인증토큰: permit
+    이메일인증토큰: register
+    세션토큰: session
