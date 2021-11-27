@@ -141,4 +141,4 @@ cython_debug/
 ### End of Python.gitignore
 
 app/test.db
-
+app/images

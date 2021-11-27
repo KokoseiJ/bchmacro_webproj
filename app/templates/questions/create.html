@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container mt-4">
+  <form method="post" enctype=multipart/form-data>
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label is-normal">제목: </label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input class="input" type="text" name="title" placeholder="제목을 입력해주세요.">
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">사진: </label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control">
+            <div class="file has-name">
+              <label class="file-label">
+                <input class="file-input" type="file" name="image">
+                <span class="file-cta">
+                  <span class="file-label">
+                    사진을 선택해주세요...
+                  </span>
+                </span>
+                <span class="file-name">파일이 선택되지 않았습니다.</span>
+              </label>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="field mt-4">
+      <textarea class="textarea" name="body" placeholder="내용을 입력해주세요." rows=20></textarea>
+    </div>
+    <div class="field has-text-right">
+      <div class="control">
+        <button class="button is-primary">
+          올리기
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- handler for filename label content update -->
+<script>
+fileObj = document.querySelector("div.file");
+fileInput = fileObj.querySelector("input");
+fileName = fileObj.querySelector(".file-name");
+
+fileInput.addEventListener("change", function(event) {
+  files = fileInput.files
+  if (files.length > 0) {
+    fileName.innerText = files[0].name
+  } else {
+    fileName.innerText = "파일이 선택되지 않았습니다."
+  }
+});
+
+</script>
+{% endblock %}

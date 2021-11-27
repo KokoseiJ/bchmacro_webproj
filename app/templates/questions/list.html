@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container mt-4">
+  <div class="box">
+    {% for chunk in divide_list(posts, perrow) %}
+    <div class="columns">
+      {% for post in chunk %}
+      <div class="column is-one-third">
+        <a href="/questions/{{ post.id }}">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image">
+                <img src="/questions/{{ post.id }}/image" height="500">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <p class="title is-4">{{ post.title }}</p>
+                  <p class="subtitle is-6">
+                    {{ get_user_from_id(post.author).nickname }}
+                  </p>
+                </div>
+              </div>
+              <div class="content">
+                {{ shrink_content(post.content) }}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="field is-grouped is-grouped-centered">
+    <p class="control">
+      <a href="?page=1" class="button">&lt;&lt;</a>
+    </p>
+    <p class="control">
+      <a href="?page={{ page - 1 }}" class="button">&lt;</a>
+    </p>
+    <p class="control">
+      <div class="dropdown is-active mr-5">
+        <div class="dropdown-trigger">
+          <button class="button" id="dropdown-button">
+            <span>{{ page }}</span>
+          </button>
+        </div>
+        <div class="dropdown-menu is-hidden" id="dropdown-menu">
+          <div class="dropdown-content">
+            {% for i in range(1, totalpage + 1) %}
+            {% if i == page %}
+            <a href="?page={{ i }}" class="dropdown-item is-active">
+              {% else %}
+              <a href="?page={{ i }}" class="dropdown-item">
+                {% endif %}
+                {{ i }}
+              </a>
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+    </p>
+    <p class="control">
+      <a href="?page={{ page + 1 }}" class="button">&gt;</a>
+    </p>
+    <p class="control">
+      <a href="?page={{ totalpage }}" class="button">&gt;&gt;</a>
+    </p>
+  </div>
+</div>
+<script>
+var dropdown_button = document.getElementById("dropdown-button")
+var dropdown_menu = document.getElementById("dropdown-menu");
+  dropdown_button.addEventListener("click", function() {
+  dropdown_menu.classList.toggle("is-hidden");
+});
+</script>
+{% endblock %}

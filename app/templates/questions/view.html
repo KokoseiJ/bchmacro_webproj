@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container mt-4">
+  <h1 class="title is-3">{{ post.title }}</h1>
+  <h2 class="subtitle is-5">작성자: {{ author.nickname }}</h2>
+  <div class="box mt-4">
+    {% if post.image %}
+    <div class="card_image">
+      <figure class="image">
+        <img src="./image">
+      </figure>
+    </div>
+    {% endif %}
+    <p class="mt-2">
+      {{ post.content }}
+    </p>
+  </div>
+  <a class="has-text-right" href="./answer">
+    <button class="button is-primary">답변하기</button>
+  </a>
+  <hr>
+  <h1 class="title is-3">답변들</h1>
+  {% if replies %}
+  {% for reply in replies %}
+  <div class="box mt-2">
+    <h1 class="title is-4">{{ reply.title }}</h1>
+    <h2 class="subtitle is-6">작성자: {{ get_user_from_id(reply.author).nickname }}</h2>
+    {% if post.image %}
+    <div class="card_image">
+      <figure class="image">
+        <img src="../{{ reply.id }}/image">
+      </figure>
+    </div>
+    {% endif %}
+    <p class="mt-2">{{ reply.content }}</p>
+  </div>
+  {% endfor %}
+  {% else %}
+  <h2 class="subtitle">아직 작성된 답변이 없습니다.</h2>
+  {% endif %}
+</div>
+{% endblock %}
