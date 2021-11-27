@@ -43,8 +43,8 @@ def decode(token, key=None, verify=True):
     if not token.count(".") == 2:
         raise JWTDecodeError(token, "Incorrect format")
 
-    payload, signature = token.rsplit(".", 1)
-    head, body = map(b64urldecode, payload.encode().split(b"."))
+    payload, signature = [x.encode() for x in token.rsplit(".", 1)]
+    head, body = [json.loads(b64urldecode(x)) for x in payload.split(b".")]
 
     if verify:
         if head['alg'] != "HS256":
