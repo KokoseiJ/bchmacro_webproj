@@ -1,8 +1,8 @@
-"""Initial migration
+"""empty message
 
-Revision ID: 27ca48991494
+Revision ID: 861a4bf3c010
 Revises: 
-Create Date: 2021-11-14 04:35:26.387167
+Create Date: 2021-11-27 02:55:50.343694
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '27ca48991494'
+revision = '861a4bf3c010'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,21 +30,20 @@ def upgrade():
     op.create_table('image',
     sa.Column('id', sa.String(length=12), nullable=False),
     sa.Column('author', sa.String(length=8), nullable=False),
+    sa.Column('filename', sa.String(length=20), nullable=False),
     sa.Column('parent_post', sa.String(length=12), nullable=False),
-    sa.Column('filename', sa.String(length=50), nullable=False),
-    sa.Column('sha256', sa.String(length=44), nullable=False),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('filename'),
     sa.UniqueConstraint('id')
     )
     op.create_table('post',
     sa.Column('id', sa.String(length=12), nullable=False),
     sa.Column('type', sa.Integer(), nullable=False),
     sa.Column('creation_time', sa.DateTime(), nullable=False),
-    sa.Column('image', sa.String(length=12), nullable=False),
+    sa.Column('image', sa.String(length=12), nullable=True),
+    sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('author', sa.String(length=8), nullable=False),
     sa.Column('content', sa.Text(), nullable=False),
-    sa.Column('comments', sa.Text(), nullable=True),
-    sa.Column('replies', sa.Text(), nullable=True),
     sa.Column('parent_post', sa.String(length=12), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('id')

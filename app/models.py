@@ -1,5 +1,9 @@
 from app import db
 
+from collections import namedtuple
+
+GhostUser = namedtuple("GhostUser", ("nickname",))
+
 
 class User(db.Model):
     id = db.Column(
@@ -80,6 +84,12 @@ class Post(db.Model):
         # Placeholder
         db.String(12),
         unique=False,
+        nullable=True
+    )
+
+    title = db.Column(
+        db.String(50),
+        unique=False,
         nullable=False
     )
 
@@ -93,18 +103,6 @@ class Post(db.Model):
         db.Text,
         unique=False,
         nullable=False
-    )
-
-    comments = db.Column(
-        db.Text,
-        unique=False,
-        nullable=True
-    )
-
-    replies = db.Column(
-        db.Text,
-        unique=False,
-        nullable=True
     )
 
     parent_post = db.Column(
@@ -128,20 +126,14 @@ class Image(db.Model):
         nullable=False
     )
 
+    filename = db.Column(
+        db.String(20),
+        unique=True,
+        nullable=False
+    )
+
     parent_post = db.Column(
         db.String(12),
-        unique=False,
-        nullable=False
-    )
-
-    filename = db.Column(
-        db.String(50),
-        unique=False,
-        nullable=False
-    )
-
-    sha256 = db.Column(
-        db.String(44),
         unique=False,
         nullable=False
     )
