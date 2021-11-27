@@ -5,11 +5,9 @@
   <h2 class="subtitle is-5">작성자: {{ author.nickname }}</h2>
   <div class="box mt-4">
     {% if post.image %}
-    <div class="card_image">
-      <figure class="image">
-        <img src="./image">
-      </figure>
-    </div>
+    <figure class="">
+      <img src="./image" height="300">
+    </figure>
     {% endif %}
     <p class="mt-2">
       {{ post.content }}
@@ -26,8 +24,8 @@
     <h1 class="title is-4">{{ reply.title }}</h1>
     <h2 class="subtitle is-6">작성자: {{ get_user_from_id(reply.author).nickname }}</h2>
     {% if post.image %}
-    <div class="card_image">
-      <figure class="image">
+    <div class="">
+      <figure class="">
         <img src="../{{ reply.id }}/image">
       </figure>
     </div>
@@ -39,4 +37,12 @@
   <h2 class="subtitle">아직 작성된 답변이 없습니다.</h2>
   {% endif %}
 </div>
+<style type="text/css">
+img {
+  max-height: 250px;
+  width: auto;
+  height: auto;
+}
+
+</style>
 {% endblock %}
