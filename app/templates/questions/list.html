@@ -10,7 +10,7 @@
           <div class="card">
             <div class="card-image">
               <figure class="">
-                <img src="/questions/{{ post.id }}/image">
+                <img class="postview" src="/questions/{{ post.id }}/image">
               </figure>
             </div>
             <div class="card-content">
@@ -78,7 +78,7 @@ var dropdown_menu = document.getElementById("dropdown-menu");
 });
 </script>
 <style type="text/css">
-img {
+img.postview {
   display: block;
   max-height: 250px;
   width: auto;
