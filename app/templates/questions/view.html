@@ -35,6 +35,12 @@
   <h2 class="subtitle">아직 작성된 답변이 없습니다.</h2>
   {% endif %}
 </div>
+<script>
+  imgs = document.querySelectorAll("img.postview");
+  imgs.forEach((img) => {
+    img.addEventListener('click', () => window.open(img.src))
+  })
+</script>
 <style type="text/css">
 img.postview {
   max-height: 250px;
