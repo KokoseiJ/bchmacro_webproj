@@ -1,8 +1,10 @@
 from flask import (
-    Blueprint, request, redirect, render_template, send_from_directory
+    Blueprint, request, redirect, render_template, send_from_directory,
+    make_response
 )
 
 from app.modules.auth import login_handler
+from app.modules.util import send_token
 
 from os.path import join
 from urllib.parse import urlparse, urlunparse
@@ -26,10 +28,20 @@ def favicon():
                                mimetype='image/vnd.microsoft.icon')
 
 
+@bp.route("/mail")
+def mail():
+    send_token("kokoseij@gmail.com", "testtoken!")
+    return "sent!"
+
+
 @bp.get("/webfont/nanum-barun-gothic.css")
 def nanumbarun_webfont():
     baseurl = urlunparse(urlparse(request.url)[:2] + ("",) * 4)
-    return render_template(
+
+    resp = make_response(render_template(
         "resource/nanum-barun-gothic.css",
         baseurl=baseurl
-    )
+    ))
+
+    resp.mimetype = "text/css"
+    return resp

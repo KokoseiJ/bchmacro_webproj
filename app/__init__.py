@@ -1,10 +1,14 @@
 from flask import Flask
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+
+from app.error import WebError, handler
 
 import os
 
 db = SQLAlchemy()
+mail = Mail()
 migrate = Migrate()
 
 
@@ -25,11 +29,23 @@ def create_app():
     app.wsgi_app = ReverseProxied(app.wsgi_app)
 
     app.config['SECRET_KEY'] = b"TESTING_KEY"
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.config['PREFERRED_URL_SCHEME'] = 'https'
+    app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, "images")
+
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, "images")
-    app.config['PREFERRED_URL_SCHEME'] = 'https'
+
+    mailconf = open(os.path.join(app.root_path, "config", "mailacc")).read()
+    mailaddr, passwd = mailconf.split(":", 1)
+    mailacc, mailserver = mailaddr.split("@", 1)
+
+    app.config['MAIL_SERVER'] = mailserver
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USE_SSL'] = True
+    app.config['MAIL_USERNAME'] = mailaddr
+    app.config['MAIL_PASSWORD'] = passwd
+    app.config['MAIL_DEFAULT_SENDER'] = mailaddr
 
     from . import views
     from .modules.template_util import register
@@ -41,6 +57,9 @@ def create_app():
 
     __import__("app.models")
     db.init_app(app)
+    mail.init_app(app)
     migrate.init_app(app, db)
+
+    app.register_error_handler(WebError, handler)
 
     return app

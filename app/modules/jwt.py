@@ -40,7 +40,7 @@ def encode(data, key=None, header=JWT_DEFAULT_HEADER):
 
 
 def decode(token, key=None, verify=True):
-    if not token.count(".") == 2:
+    if not token or not token.count(".") == 2:
         raise JWTDecodeError(token, "Incorrect format")
 
     payload, signature = [x.encode() for x in token.rsplit(".", 1)]
