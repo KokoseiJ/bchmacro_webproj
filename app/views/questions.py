@@ -156,8 +156,11 @@ def redirect_image(id_):
     if post is None:
         abort(404)
 
-    image = Image.query.get(post.image)
+    if post.image is None:
+        return redirect("/static/noimage.png")
 
+    image = Image.query.get(post.image)
+    
     if image is None:
         return redirect("/static/noimage.png")
 

@@ -30,7 +30,6 @@ def favicon():
 @bp.get("/webfont/nanum-barun-gothic.css")
 def nanumbarun_webfont():
     baseurl = urlunparse(urlparse(request.url)[:2] + ("",) * 4)
-    print(baseurl)
     return render_template(
         "resource/nanum-barun-gothic.css",
         baseurl=baseurl
