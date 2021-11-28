@@ -1,0 +1,17 @@
+{% extends "notice/base.html" %}
+{% block noticebody %}
+<p class="title">
+  {{ error_title }}
+</p>
+{{ error }}
+<br><br>
+<a class="button is-primary" id="return">
+  이전 페이지로 돌아가기
+</a>
+<script>
+  button = document.getElementById("return")
+  button.addEventListener("click", () => {
+    window.history.back()
+  })
+</script>
+{% endblock %}

@@ -54,7 +54,7 @@ fileObj = document.querySelector("div.file");
 fileInput = fileObj.querySelector("input");
 fileName = fileObj.querySelector(".file-name");
 
-fileInput.addEventListener("change", function(event) {
+fileInput.addEventListener("change", (event) => {
   files = fileInput.files
   if (files.length > 0) {
     fileName.innerText = files[0].name

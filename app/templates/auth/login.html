@@ -1,7 +1,21 @@
 {% extends "auth/base.html" %}
 {% block form %}
 <form class="box" method="post">
-  <div class="field"><h2 class="is-size-2">로그인</h2></div>
+  <div class="field">
+    <h2 class="is-size-2">로그인</h2>
+  </div>
+  {% if error %}
+  <div class="box has-background-danger has-text-danger-light">
+    <span class="icon-text">
+      <span class="icon">
+        <ion-icon name="warning-outline"></ion-icon>
+      </span>
+      <span>
+        <b>오류! </b>{{ error }}
+      </span>
+    </span>
+  </div>
+  {% endif %}
   <div class="field">
     <label class="label">이메일</label>
     <div class="control has-icons-left">

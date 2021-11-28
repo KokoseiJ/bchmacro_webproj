@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<section class="hero is-fullheight-with-navbar has-background-info">
+  <div class="hero-body">
+    <div class="container">
+      <div class="box has-text-centered">
+        {% block noticebody %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -24,6 +24,6 @@
 
 
 세션 sub:
-    가입인증토큰: permit
-    이메일인증토큰: register
-    세션토큰: session
+    가입인증토큰: permit - iss - snum - name - exp
+    이메일인증토큰: register - exp
+    세션토큰: session - id - exp

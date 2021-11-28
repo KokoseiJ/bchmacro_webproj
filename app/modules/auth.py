@@ -2,7 +2,7 @@ from flask import request, make_response
 
 from app import db
 from app.models import User
-from app.modules.jwt import decode, JWTError
+from app.modules.jwt import encode, decode, JWTError
 
 import re
 import time
@@ -56,21 +56,50 @@ def register_sanitycheck(email, password, nickname, name, student_number):
     return False
 
 
-def get_id(model):
-    id_list = [x[0] for x in model.query.with_entities(User.id).all()]
-    while True:
-        id_ = base64.urlsafe_b64encode(secrets.token_bytes(6)).decode()
-        if id_ not in id_list:
-            return id_
+def register_dupecheck(email, nickname):
+    if User.query.filter_by(email=email).first():
+        return "이미 가입된 이메일입니다. 확인 후 다시 시도해주세요."
+
+    elif User.query.filter_by(nickname=nickname).first():
+        return "이미 사용중인 별명입니다. 새 벌명을 작성해주세요."
+
+    return False
 
 
-def generate_user(
+def register_check(email, password, nickname, name, student_number):
+    reason = register_sanitycheck(
+        email, password, nickname, name, student_number)
+
+    if reason:
+        return reason
+
+    return register_dupecheck(email, nickname)
+
+
+def generate_register_token(
         email, password, nickname, name, student_number, account_type=0):
+    
     password = bcrypt.hashpw(
         sha256(password.encode()).digest(),
         bcrypt.gensalt(10)
     ).decode()
 
+    data = {
+        "sub": "register",
+        "exp": time.time() + 1800,
+        "email": email,
+        "password": password,
+        "nickname": nickname,
+        "name": name,
+        "student_number": student_number,
+        "account_type": account_type
+    }
+
+    return encode(data)
+
+
+def generate_user(
+        email, password, nickname, name, student_number, account_type=0):
     id_ = get_id(User)    
 
     user = User(
@@ -87,6 +116,14 @@ def generate_user(
     db.session.add(user)
     db.session.commit()
     return user
+
+
+def get_id(model):
+    id_list = [x[0] for x in model.query.with_entities(User.id).all()]
+    while True:
+        id_ = base64.urlsafe_b64encode(secrets.token_bytes(6)).decode()
+        if id_ not in id_list:
+            return id_
 
 
 def login_handler(func):
