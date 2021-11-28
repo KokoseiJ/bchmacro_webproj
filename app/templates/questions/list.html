@@ -9,8 +9,8 @@
         <a href="/questions/{{ post.id }}">
           <div class="card">
             <div class="card-image">
-              <figure class="image">
-                <img src="/questions/{{ post.id }}/image" height="500">
+              <figure class="">
+                <img src="/questions/{{ post.id }}/image">
               </figure>
             </div>
             <div class="card-content">
@@ -38,7 +38,7 @@
       <a href="?page=1" class="button">&lt;&lt;</a>
     </p>
     <p class="control">
-      <a href="?page={{ page - 1 }}" class="button">&lt;</a>
+      <a href="?page={{ page - 1  if page != 1 else 1}}" class="button">&lt;</a>
     </p>
     <p class="control">
       <div class="dropdown is-active mr-5">
@@ -63,7 +63,7 @@
       </div>
     </p>
     <p class="control">
-      <a href="?page={{ page + 1 }}" class="button">&gt;</a>
+      <a href="?page={{ page + 1 if page != totalpage else totalpage}}" class="button">&gt;</a>
     </p>
     <p class="control">
       <a href="?page={{ totalpage }}" class="button">&gt;&gt;</a>
@@ -77,4 +77,15 @@ var dropdown_menu = document.getElementById("dropdown-menu");
   dropdown_menu.classList.toggle("is-hidden");
 });
 </script>
+<style type="text/css">
+img {
+  display: block;
+  max-height: 250px;
+  width: auto;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+</style>
 {% endblock %}
