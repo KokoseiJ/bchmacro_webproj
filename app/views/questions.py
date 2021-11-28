@@ -38,8 +38,6 @@ def view_questions(user):
     posts = Post.query.filter_by(type=1)\
         .offset(post_per_page*(page-1)).limit(post_per_page).all()
 
-    print(posts)
-
     return render_template(
         "questions/list.html",
         posts=posts,
