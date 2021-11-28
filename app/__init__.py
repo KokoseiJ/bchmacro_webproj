@@ -27,6 +27,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, "images")
+    app.config['PREFERRED_URL_SCHEME'] = 'https'
 
     from . import views
     from .modules.template_util import register
