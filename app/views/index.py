@@ -28,12 +28,6 @@ def favicon():
                                mimetype='image/vnd.microsoft.icon')
 
 
-@bp.route("/mail")
-def mail():
-    send_token("kokoseij@gmail.com", "testtoken!")
-    return "sent!"
-
-
 @bp.get("/webfont/nanum-barun-gothic.css")
 def nanumbarun_webfont():
     baseurl = urlunparse(urlparse(request.url)[:2] + ("",) * 4)
