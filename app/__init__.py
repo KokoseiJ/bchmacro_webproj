@@ -37,8 +37,11 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     mailconf = open(os.path.join(app.root_path, "config", "mailacc")).read()
+    mailconf = mailconf.strip().rstrip()
     mailaddr, passwd = mailconf.split(":", 1)
     mailacc, mailserver = mailaddr.split("@", 1)
+
+    print(mailaddr, passwd, mailserver)
 
     app.config['MAIL_SERVER'] = mailserver
     app.config['MAIL_PORT'] = 465
