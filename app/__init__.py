@@ -13,8 +13,9 @@ class ReverseProxied(object):
         self.app = app
 
     def __call__(self, environ, start_response):
-        # HTTPS 강제적용
-        environ['wsgi.url_scheme'] = "https"
+        host = environ.get("HTTP_X_FORWARDED_PROTO", None)
+        if host is not None:
+            environ['wsgi.url_scheme'] = host
         return self.app(environ, start_response)
 
 
