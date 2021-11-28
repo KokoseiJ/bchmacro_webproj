@@ -26,6 +26,7 @@ def create_app():
 
     app.config['SECRET_KEY'] = b"TESTING_KEY"
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, "images")
     app.config['PREFERRED_URL_SCHEME'] = 'https'
