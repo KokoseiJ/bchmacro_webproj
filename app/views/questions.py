@@ -163,6 +163,8 @@ def delete_question(id_, user):
 
     delete_post(post)
 
+    db.session.commit()
+
     return redirect("/../../")
 
 

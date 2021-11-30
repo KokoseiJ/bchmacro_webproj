@@ -43,14 +43,17 @@ def delete_post(post):
         from flask import current_app
 
         image = Image.query.get(post.image)
-        os.remove(
-            os.path.join(
-                current_app.config['UPLOAD_FOLDER'],
-                image.filename
+        try:
+            os.remove(
+                os.path.join(
+                    current_app.config['UPLOAD_FOLDER'],
+                    image.filename
+                )
             )
-        )
+        except FileNotFoundError:
+            print(f"Warning! {image.filename} not found")
         db.session.delete(image)
 
     if post.type == 1:
         childposts = Post.query.filter_by(parent_post=post.id).all()
-        list(map(childposts, delete_post))
+        list(map(delete_post, childposts))
