@@ -40,6 +40,7 @@ def view_questions(user):
 
     return render_template(
         "questions/list.html",
+        user=user,
         posts=posts,
         page=page,
         totalpage=totalpage,
@@ -54,7 +55,7 @@ def create_post(user, id_=None):
     if user is None:
         return redirect("/login?return_to=/questions/create")
 
-    return render_template("questions/create.html")
+    return render_template("questions/create.html", user=user)
 
 
 @bp.route("/create", methods=["POST"])
@@ -141,6 +142,7 @@ def view_question(id_, user):
 
     return render_template(
         "questions/view.html",
+        user=user,
         author=author,
         post=post,
         replies=replies

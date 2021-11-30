@@ -110,8 +110,8 @@ def handle_register():
     print(data)
 
     # 이슈어 확인할것
-    if data.get('sub') != "permit" or data.get('snum') is None or \
-            data.get('name') is None or data.get('exp') is None:
+    if data.get('sub') != "permit" or data.get('exp') is None or \
+            data.get('name') is None or data.get('snum') is None:
         reason = "가입 토큰이 올바르지 않습니다. 토큰을 확인한 후 다시 시도해주세요."
     if data.get('exp') < time.time():
         reason = "가입 토큰이 만료되었습니다. 새 토큰을 발급받아주세요."
@@ -177,3 +177,8 @@ def handle_verify():
         email, password, nickname, name, student_number, account_type)
 
     return render_template("auth/verify_notice.html")
+
+
+@bp.get("/admin/token")
+def token_form():
+    return render_template("admin/token.html")

@@ -38,8 +38,15 @@
         </div>
         <div class="navbar-end">
           <div class="navbar-item">
+            {% if user %}
+            <p>안녕하세요, <b>{{user.name}}</b> 님</p>
+          </div>
+          <div class="navbar-item">
+            <a class="button is-danger" href="/logout">로그아웃</a>
+            {% else %}
             <a class="button is-primary" href="/register">가입하기</a>
             <a class="button is-light" href="/login">로그인</a>
+            {% endif %}
           </div>
         </div>
       </div>
