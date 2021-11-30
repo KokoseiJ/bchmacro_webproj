@@ -170,7 +170,7 @@ def handle_verify():
     num = stdnum % 100
 
     if classroom == 0 or num == 0:
-        account_type = 1
+        account_type = 2
 
     reason = register_dupecheck(email, nickname)
 
