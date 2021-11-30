@@ -1,6 +1,7 @@
 from flask import (
     request, Blueprint, redirect, render_template, abort, send_from_directory
 )
+from sqlalchemy import desc
 
 from app import db
 from app.models import Post, Image, User, GhostUser
@@ -35,7 +36,7 @@ def view_questions(user):
     if page <= 0 or page > totalpage:
         page = 1
 
-    posts = Post.query.filter_by(type=1)\
+    posts = Post.query.filter_by(type=1).order_by(desc(Post.creation_time))\
         .offset(post_per_page*(page-1)).limit(post_per_page).all()
 
     return render_template(
