@@ -12,8 +12,13 @@
     <p class="mt-2">
       {{ post.content }}
     </p>
+    {% if user.account_type != 0 or user.id == post.author %}
+    <a href="./delete">
+      <button class="button is-danger">삭제</button>
+    </a>
+    {% endif %}
   </div>
-  <a class="has-text-right" href="./answer">
+  <a href="./answer">
     <button class="button is-primary">답변하기</button>
   </a>
   <hr>
@@ -29,6 +34,11 @@
       </figure>
     {% endif %}
     <p class="mt-2">{{ reply.content }}</p>
+    {% if user.account_type != 0 or user.id == reply.author %}
+    <a href="../{{ reply.id }}/delete">
+      <button class="button is-danger">삭제</button>
+    </a>
+    {% endif %}
   </div>
   {% endfor %}
   {% else %}

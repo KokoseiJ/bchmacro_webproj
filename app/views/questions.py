@@ -150,6 +150,28 @@ def view_question(id_, user):
     )
 
 
+@bp.route("/<id_>/delete", methods=["GET"])
+@login_handler
+def delete_question(id_, user):
+    post = Post.query.get(id_)
+
+    if post is None:
+        abort(404)
+
+    if user.account_type == 0 and not user.id == post.author:
+        abort(403)
+
+    db.session.delete(post)
+
+    if post.type == 1:
+        childposts = Post.query.filter_by(parent_post=post.id).all()
+        list(map(db.session.delete, childposts))
+
+    db.session.commit()
+
+    return redirect("/../../")
+
+
 @bp.route("/<id_>/image", methods=["GET"])
 def redirect_image(id_):
     post = Post.query.get(id_)
