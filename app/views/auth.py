@@ -180,5 +180,41 @@ def handle_verify():
 
 
 @bp.get("/admin/token")
-def token_form():
-    return render_template("admin/token.html")
+@login_handler
+def token_form(user):
+    if user is None or user.account_type == 0:
+        return redirect("/")
+    return render_template("admin/token.html", user=user)
+
+
+@bp.post("/admin/token")
+@login_handler
+def handle_token(user):
+    if user is None or user.account_type == 0:
+        return redirect("/")
+
+    name = request.form.get("name")
+    snum = request.form.get("studentNumber")
+
+    if None in (name, snum):
+        raise WebError(
+            user,
+            "이름 또는 학번이 잘못되었습니다. 다시 시도해주세요.",
+            400
+        )
+
+    data = {
+        "sub": "permit",
+        "iss": user.id,
+        "snum": snum,
+        "name": name,
+        "exp": time.time() + 259200
+    }
+
+    token = encode(data)
+
+    return render_template(
+        "admin/token_notice.html",
+        user=user,
+        token=token
+    )

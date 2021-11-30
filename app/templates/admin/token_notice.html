@@ -1,0 +1,29 @@
+{% extends "notice/base.html" %}
+{% block noticebody %}
+<p class="title">
+  토큰 생성이 완료되었습니다.
+</p>
+<p>
+  토큰은<br>
+  <code>{{ token }}</code><br>
+  입니다.<br>
+  이 토큰을 가입희망자에게 보내주세요.<br>
+  유효기간은 3일 입니다.
+</p>
+<br><br>
+<a id="copy" class="button is-link" href="#">
+  복사하기
+</a>
+<a id="return" class="button is-primary" href="/">
+  메인 화면으로 돌아가기
+</a>
+<script type="text/javascript">
+  copybtn = document.getElementById("copy");
+  token = document.querySelector("code").innerText;
+
+  copybtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(token);
+    alert("토큰이 복사되었습니다.");
+  })
+</script>
+{% endblock %}

@@ -42,6 +42,9 @@
             <p>안녕하세요, <b>{{user.name}}</b> 님</p>
           </div>
           <div class="navbar-item">
+            {% if user.account_type != 0 %}
+            <a class="button is-light" href="/admin/token">가입토큰 생성하기</a>
+            {% endif %}
             <a class="button is-danger" href="/logout">로그아웃</a>
             {% else %}
             <a class="button is-primary" href="/register">가입하기</a>

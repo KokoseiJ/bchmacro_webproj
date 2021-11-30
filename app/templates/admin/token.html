@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container">
+    <form class="box" method="post">
+        <div class="field">
+            <label class="label">학번</label>
+            <div class="control">
+                <input class="input" type="text" name="studentNumber">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">이름</label>
+            <div class="control">
+                <input class="input" type="text" name="name">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-link">토큰 생성하기</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
