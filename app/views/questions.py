@@ -6,7 +6,7 @@ from sqlalchemy import desc
 from app import db
 from app.models import Post, Image, User, GhostUser
 from app.modules.auth import login_handler, get_id
-from app.modules.util import check_image
+from app.modules.util import check_image, delete_post
 
 import os
 import datetime
@@ -161,13 +161,7 @@ def delete_question(id_, user):
     if user.account_type == 0 and not user.id == post.author:
         abort(403)
 
-    db.session.delete(post)
-
-    if post.type == 1:
-        childposts = Post.query.filter_by(parent_post=post.id).all()
-        list(map(db.session.delete, childposts))
-
-    db.session.commit()
+    delete_post(post)
 
     return redirect("/../../")
 
