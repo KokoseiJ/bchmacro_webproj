@@ -46,11 +46,11 @@ def register_sanitycheck(email, password, nickname, name, student_number):
     if not 1 <= grade <= 3:
         return f"{grade}학년은 올바르지 않은 학년입니다. 학번을 확인 후 다시 작성해주세요."
 
-    if not 1 <= classroom <= 15:
+    if not 0 <= classroom <= 15:
         return f"{classroom}반은 올바르지 않은 반 입니다." \
                "학번을 확인 후 다시 작성해주세요."
 
-    if not 1 <= num <= 40:
+    if not 0 <= num <= 40:
         return f"{num}번은 올바르지 않은 번호입니다. 학번을 확인 후 다시 작성해주세요."
 
     return False

@@ -164,6 +164,14 @@ def handle_verify():
     student_number = data.get('student_number')
     account_type = data.get('account_type')
 
+    stdnum = int(student_number)
+
+    classroom = stdnum // 100 % 100
+    num = stdnum % 100
+
+    if classroom == 0 or num == 0:
+        account_type = 1
+
     reason = register_dupecheck(email, nickname)
 
     if reason:
