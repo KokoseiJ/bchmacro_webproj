@@ -143,3 +143,4 @@ cython_debug/
 app/test.db
 app/images
 app/config/*
+app/secretkey

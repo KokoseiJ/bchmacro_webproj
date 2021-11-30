@@ -28,7 +28,8 @@ def create_app():
 
     app.wsgi_app = ReverseProxied(app.wsgi_app)
 
-    app.config['SECRET_KEY'] = b"TESTING_KEY"
+    app.config['SECRET_KEY'] = open(
+        os.path.join(app.root_path, "secretkey"), "rb").read()
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['PREFERRED_URL_SCHEME'] = 'https'
     app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, "images")
