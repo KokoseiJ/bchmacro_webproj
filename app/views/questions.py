@@ -23,7 +23,7 @@ bp = Blueprint(
 @bp.route("/", methods=["GET"])
 @login_handler
 def view_questions(user):
-    post_per_page = 15
+    post_per_page = 9
     post_per_row = 3
 
     totalpage = ceil(Post.query.filter_by(type=1).count() / post_per_page)
