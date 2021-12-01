@@ -25,6 +25,9 @@
               <div class="content">
                 {{ shrink_content(post.content) }}
               </div>
+              <p class="subtitle has-text-grey has-text-right is-6">
+                {{ str_from_dt(post.creation_time) }}
+              </p>
             </div>
           </div>
         </a>

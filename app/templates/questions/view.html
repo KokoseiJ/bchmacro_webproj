@@ -12,6 +12,10 @@
     <p class="mt-2">
       {{ post.content }}
     </p>
+    <br>
+    <p class="subtitle has-text-grey has-text-right is-6">
+      {{ str_from_dt(post.creation_time) }}
+    </p>
     {% if user.account_type != 0 or user.id == post.author %}
     <a href="./delete">
       <button class="button is-danger">삭제</button>
@@ -29,11 +33,15 @@
     <h1 class="title is-4">{{ reply.title }}</h1>
     <h2 class="subtitle is-6">작성자: {{ get_user_from_id(reply.author).nickname }}</h2>
     {% if reply.image %}
-      <figure class="">
-        <img class="postview" src="../{{ reply.id }}/image">
-      </figure>
+    <figure class="">
+      <img class="postview" src="../{{ reply.id }}/image">
+    </figure>
     {% endif %}
     <p class="mt-2">{{ reply.content }}</p>
+    <br>
+    <p class="subtitle has-text-grey has-text-right is-6">
+      {{ str_from_dt(post.creation_time) }}
+    </p>
     {% if user.account_type != 0 or user.id == reply.author %}
     <a href="../{{ reply.id }}/delete">
       <button class="button is-danger">삭제</button>

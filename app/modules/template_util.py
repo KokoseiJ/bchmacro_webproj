@@ -1,5 +1,6 @@
 from app.models import User, GhostUser
 
+import datetime
 from types import FunctionType
 
 
@@ -22,6 +23,23 @@ def shrink_content(content):
         return content[:47] + "..."
     else:
         return content
+
+
+def str_from_dt(dt):
+    now = datetime.datetime.now()
+    fmtstr = ""
+
+    if now.year != dt.year:
+        fmtstr += "%Y년 %m월 %d일 "
+
+    elif now.month != dt.month or now.day != dt.day:
+        fmtstr += "%m월 %d일 "
+
+    fmtstr += "%H:%M:%S"
+
+    return dt.strftime(fmtstr)
+
+
 
 
 def register(app):
