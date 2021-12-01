@@ -153,6 +153,9 @@ def view_question(id_, user):
 @bp.route("/<id_>/delete", methods=["GET"])
 @login_handler
 def delete_question(id_, user):
+    if user is None:
+        abort(403)
+
     post = Post.query.get(id_)
 
     if post is None:
