@@ -1,3 +1,14 @@
+{% macro save_crlf( the_string ) -%}
+{% if the_string %}
+{% for line in the_string.split('\n') %}
+<br />
+{{ line }}
+{% endfor %}
+{% else %}
+{{ the_string }}
+{% endif %}
+{%- endmacro %}
+
 {% extends "layout.html" %}
 {% block body %}
 <div class="container mt-4">
@@ -10,7 +21,7 @@
     </figure>
     {% endif %}
     <p class="mt-2">
-      {{ post.content.replace("\n", "<br>") }}
+      {{ save_crlf(post.content)}}
     </p>
     <br>
     <p class="subtitle has-text-grey has-text-right is-6">
@@ -37,7 +48,7 @@
       <img class="postview" src="../{{ reply.id }}/image">
     </figure>
     {% endif %}
-    <p class="mt-2">{{ reply.content.replace("\n", "<br>") }}</p>
+    <p class="mt-2">{{ save_crlf(reply.content)}}</p>
     <br>
     <p class="subtitle has-text-grey has-text-right is-6">
       {{ str_from_dt(reply.creation_time) }}

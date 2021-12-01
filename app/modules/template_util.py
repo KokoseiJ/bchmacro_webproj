@@ -1,3 +1,5 @@
+from flask import escape
+
 from app.models import User, GhostUser
 
 import datetime
@@ -38,8 +40,6 @@ def str_from_dt(dt):
     fmtstr += "%H:%M:%S"
 
     return dt.strftime(fmtstr)
-
-
 
 
 def register(app):
